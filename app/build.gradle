@@ -1,0 +1,198 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        applicationId "com.basecode.app"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+    kapt {
+        generateStubs = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "googleApiKey", '""'
+            buildConfigField "String", "baseUrl", '""'
+
+        }
+        debug {
+            buildConfigField "String", "googleApiKey", '""'
+            buildConfigField "String", "baseUrl", '""'
+
+
+        }
+    }
+
+}
+
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+
+dependencies {
+    def lifecycle_version = "2.2.0"
+    def kotlin_coroutines_version = '1.3.3'
+
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //multidex gradle
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+
+    //recycle view
+    implementation 'com.thoughtbot:expandablerecyclerview:1.3'
+
+
+    //material gradle
+    implementation 'com.google.android.material:material:1.2.0-alpha06'
+
+
+    //live data
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    // optional - ReactiveStreams support for LiveData
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
+    // For Kotlin use lifecycle-reactivestreams-ktx
+    // optional - Test helpers for LiveData
+    //   testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
+
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
+
+
+
+    //timber gradle
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //rxjava
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
+    implementation "io.reactivex.rxjava2:rxkotlin:2.4.0"
+
+    //dagger 2
+    api 'com.google.dagger:dagger-android:2.20'
+    api 'com.google.dagger:dagger-android-support:2.20' // if you use the support libraries
+    api "com.google.dagger:dagger:2.24"
+    kapt 'com.google.dagger:dagger-android-processor:2.20'
+    kapt "com.google.dagger:dagger-compiler:2.20"
+
+
+    //calligraphy
+    implementation 'io.github.inflationx:calligraphy3:3.1.1'
+    implementation 'io.github.inflationx:viewpump:2.0.3'
+
+    //spdp gradle
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    //otpview
+    implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.0.3'
+
+    /*  //font awesome icon
+    implementation 'info.androidhive:fontawesome:0.0.5'*/
+
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:4.2.1"
+    implementation 'com.squareup.retrofit2:converter-scalars:2.4.0'
+
+
+    //rx java
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    implementation 'com.jakewharton.rxbinding3:rxbinding:3.0.0'
+
+    //customize rating bar
+    implementation 'com.github.fuzz-productions:RatingBar:1.0.5'
+
+    //sweet alert
+    implementation 'com.github.f0ris.sweetalert:library:1.5.6'
+
+    //sms retriver api
+    implementation 'com.google.android.gms:play-services-base:17.2.1'
+    implementation 'com.google.android.gms:play-services-identity:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:17.4.0'
+
+    // Note: If you have migrated your code to AndroidX than add this for LocalBroadCastManager
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+
+
+    implementation 'com.googlecode.libphonenumber:libphonenumber:8.2.0'
+
+
+
+    // glide app
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    kapt 'com.github.bumptech.glide:compiler:4.9.0'
+
+    //rx permission
+    implementation 'gun0912.ted:tedpermission-rx2:2.2.2'
+
+    //event bus
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
+
+
+    //google map and location gradle
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation "com.google.android.gms:play-services-location:17.0.0"
+    implementation 'com.google.maps.android:android-maps-utils:0.5'
+
+    //google place new api
+    implementation 'com.google.android.libraries.places:places:2.2.0'
+    implementation 'com.google.android.gms:play-services-places:17.0.0'
+
+
+    //image compressor
+    implementation 'id.zelory:compressor:3.0.0'
+
+    //coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
+
+    //rxbinding
+    implementation 'com.jakewharton.rxbinding:rxbinding:1.0.0'
+
+    // ios app like
+    implementation 'com.kaopiz:kprogresshud:1.2.0'
+
+
+
+
+}
